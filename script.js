@@ -1,6 +1,5 @@
 function getComputerChoice(min, max){
-     min = 1;
-     max = 4;
+     
     let computerChoice = Math.floor(Math.random()*(max - min)) + min;
 
     if(computerChoice == 1){
@@ -37,23 +36,58 @@ function getPlayerSelection(){
 }
 
 function play(getComputerChoice, getPlayerSelection){
-    computerChoice = getComputerChoice();
-    playerChoice = getPlayerSelection();
-    if((computerChoice == 1 && playerChoice == 1)||(computerChoice == 2 && playerChoice == 2)||(computerChoice == 3 && playerChoice == 3)){
+    cChoice = getComputerChoice();
+    pChoice = getPlayerSelection();
+    let winner;
+    let player;
+    let computer;
+    let tie;
+    if((cChoice == 1 && pChoice == 1)||(cChoice == 2 && pChoice == 2)||(cChoice == 3 && pChoice == 3)){
         alert("You both chose the same option!  It's a tie!");
-    } else if(computerChoice == 1 && playerChoice == 2){
+        winner = tie;
+    } else if(cChoice == 1 && pChoice == 2){
         alert("Computer threw rock and you threw paper, YOU WIN!");
-    } else if(computerChoice == 1 && playerChoice == 3){
+        winner = player;
+    } else if(cChoice == 1 && pChoice == 3){
         alert("Computer threw rock and you threw scissors, YOU LOSE!");
-    } else if(computerChoice == 2 && playerChoice == 1){
+        winner = computer;
+    } else if(cChoice == 2 && pChoice == 1){
         alert("Computer threw paper and you threw rock, YOU LOSE!");
-    } else if(computerChoice == 2 && playerChoice == 3){
+        winner = computer;
+    } else if(cChoice == 2 && pChoice == 3){
         alert("Computer threw paper and you threw scissors, YOU WIN!");
-    } else if(computerChoice == 3 && playerChoice == 1){
+        winner = player;
+    } else if(cChoice == 3 && pChoice == 1){
         alert("Computer threw scissors and you threw rock, YOU WIN!");
-    } else if(computerChoice == 3 && playerChoice == 2){
-        
+        winner = player;
+    } else if(cChoice == 3 && pChoice == 2){
         alert("Computer threw scissors and you threw paper, YOU LOSE!");
+        winner = computer;
+    }
+
+    return winner;
+    
+}
+
+function game(){
+    let pScore = 0;
+    let cScore = 0;
+    for(let i = 0; i <= 5; i++){
+        play();
+        if(winner == player){
+            pScore = pScore + 1;
+        } else if(winner == computer){
+            cScore = cScore + 1;
+        } else {
+            return;
+        }
+    }
+    if(pScore > cScore){
+        alert("Player = " + pScore + " Computer = " + cScore + " YOU'VE WON!");
+    } else if (cScore > pScore){
+        alert("Player = " + pScore + " Computer = " + cScore + " YOU'VE LOST!");
+    } else{
+        alert("Player = " + pScore + " Computer = " + cScore + " YOU'VE TIED!");
     }
 }
 
