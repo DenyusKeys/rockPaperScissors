@@ -1,0 +1,23 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main-div{
+
+    border-color: peachpuff;
+    
+}
+
+.play-button{
+    height: 100px;
+    width: 100px;
+    
+}
