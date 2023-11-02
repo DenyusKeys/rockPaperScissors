@@ -30,56 +30,73 @@ function getPlayerSelection(){
     } 
     else {
         console.log("Didn't choose a acceptable choice. Reload and Try again.")
+        getPlayerSelection();
     }
     
     return playerChoice;
 }
 
-function play(getComputerChoice, getPlayerSelection){
-    cChoice = getComputerChoice();
-    pChoice = getPlayerSelection();
-    let winner;
-    let player;
-    let computer;
-    let tie;
-    if((cChoice == 1 && pChoice == 1)||(cChoice == 2 && pChoice == 2)||(cChoice == 3 && pChoice == 3)){
+function play(){
+    let cChoice = getComputerChoice(1,4);
+    let pChoice = getPlayerSelection();
+    let winner = "none";
+    let player = "player";
+    let computer = "computer";
+    let tie = "tie";
+    if((cChoice == 1 && +pChoice == 1)||(cChoice == 2 && +pChoice == 2)||(cChoice == 3 && +pChoice == 3)){
         alert("You both chose the same option!  It's a tie!");
         winner = tie;
-    } else if(cChoice == 1 && pChoice == 2){
+        return winner;
+
+    } else if(cChoice == 1 && +pChoice == 2){
         alert("Computer threw rock and you threw paper, YOU WIN!");
         winner = player;
-    } else if(cChoice == 1 && pChoice == 3){
+        
+        return winner;
+    } else if(cChoice == 1 && +pChoice == 3){
         alert("Computer threw rock and you threw scissors, YOU LOSE!");
-        winner = computer;
-    } else if(cChoice == 2 && pChoice == 1){
+        winner = computer;       
+        return winner;
+
+    } else if(cChoice == 2 && +pChoice == 1){
         alert("Computer threw paper and you threw rock, YOU LOSE!");
-        winner = computer;
-    } else if(cChoice == 2 && pChoice == 3){
+        winner = computer;       
+        return winner;
+
+    } else if(cChoice == 2 && +pChoice == 3){
         alert("Computer threw paper and you threw scissors, YOU WIN!");
-        winner = player;
-    } else if(cChoice == 3 && pChoice == 1){
+        winner = player;        
+        return winner;
+
+    } else if(cChoice == 3 && +pChoice == 1){
         alert("Computer threw scissors and you threw rock, YOU WIN!");
-        winner = player;
-    } else if(cChoice == 3 && pChoice == 2){
+        winner = player;       
+        return winner;
+
+    } else if(cChoice == 3 && +pChoice == 2){
         alert("Computer threw scissors and you threw paper, YOU LOSE!");
-        winner = computer;
+        winner = computer;        
+        return winner;
     }
 
     return winner;
+    
     
 }
 
 function game(){
     let pScore = 0;
     let cScore = 0;
+    let player = "player";
+    let computer = "computer";
     for(let i = 0; i <= 5; i++){
-        play();
+        let winner = play();
         if(winner == player){
             pScore = pScore + 1;
         } else if(winner == computer){
             cScore = cScore + 1;
         } else {
-            return;
+            continue;
         }
     }
     if(pScore > cScore){
